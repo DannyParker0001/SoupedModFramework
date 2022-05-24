@@ -1,6 +1,6 @@
 #include <logger.h>
 #include <memory.h>
-#include <Windows.h>
+#include <windows.h>
 #include "hookManager.h"
 #include <polyhook2/Detour/x64Detour.hpp>
 #include <ipc.h>

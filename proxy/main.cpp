@@ -9,10 +9,10 @@ Usage:
 	directory called "loaders" which will contain any DLLs that should be injected before the game starts.
 	These DLLs should be 'tweaker' DLLs that prepare & patch the game for mod loading.
 */
-#include <Windows.h>
+#include <windows.h>
 #include <string>
 #include <iostream>
-#include <shlobj_core.h>
+#include <shlobj.h>
 #include <filesystem>
 #include <cstdint>
 #include <fmt/core.h>

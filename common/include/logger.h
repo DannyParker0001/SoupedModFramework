@@ -4,7 +4,7 @@
 #include <fmt/core.h>
 #include <fmt/color.h>
 #ifdef _WIN32
-#include <Windows.h>
+#include <windows.h>
 #endif
 
 #define LOGGER_LBORDER "["

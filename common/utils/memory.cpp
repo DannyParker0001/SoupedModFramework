@@ -1,5 +1,5 @@
-#include <Memory.h>
-#include <DbgHelp.h>
+#include <memory.h>
+#include <dbghelp.h>
 #include <logger.h>
 
 uintptr_t Memory::FindMLvlPtr(uintptr_t baseAddr, std::vector<unsigned int> offsets) {

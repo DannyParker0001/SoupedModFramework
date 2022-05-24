@@ -24,6 +24,7 @@ ExternalProject_Add(UltralightSDK
   INSTALL_COMMAND ""
 )
 
+add_dependencies(Common UltralightSDK)
 target_include_directories(Common PRIVATE "${ULTRALIGHT_INCLUDE_DIR}")
 target_link_directories(Common PRIVATE "${ULTRALIGHT_LIBRARY_DIR}")
 target_link_libraries(Common PRIVATE fmt UltralightCore AppCore Ultralight WebCore)

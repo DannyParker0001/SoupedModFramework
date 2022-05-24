@@ -2,7 +2,7 @@
 #include "gl/GPUDriverGL.h"
 #include <logger.h>
 #include <imgui.h>
-#include <Windows.h>
+#include <windows.h>
 #include <jsutils.h>
 #include <patchers.h>
 

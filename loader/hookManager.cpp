@@ -8,7 +8,7 @@
 #include "dumper/dumper.h"
 #include <patchers.h>
 
-#include <Windows.h>
+#include <windows.h>
 #include <stack>
 #include <polyhook2/Detour/x64Detour.hpp>
 #include "ui/webui.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <Windows.h>
+#include <windows.h>
 
 namespace Registry {
 	void ReadValue(HKEY base_key, std::string path, std::string key, char* value_buffer, bool is_text);

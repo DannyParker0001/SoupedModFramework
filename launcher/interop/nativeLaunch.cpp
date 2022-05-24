@@ -1,8 +1,8 @@
 #include <logger.h>
 #include "nativeLaunch.h"
 
-#include <Windows.h>
-#include <TlHelp32.h>
+#include <windows.h>
+#include <tlhelp32.h>
 #include <filesystem>
 #include <fmt/core.h>
 #include <fmt/color.h>

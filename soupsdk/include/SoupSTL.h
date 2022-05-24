@@ -11,9 +11,9 @@ namespace Soup {
 		static constexpr size_t _BUF_SIZE = 16 / sizeof(T) < 1 ? 1 : 16 / sizeof(T);
 	public:
 		union {
-			T* ptr;
+			T* ptr = 0;
 			T buf[_BUF_SIZE];
-		} box = 0;
+		} box;
 		static_assert(sizeof(box) == _BUF_SIZE, "BasicString::box is the wrong size!");
 		size_t length = 0;
 		size_t res = 0;
@@ -44,7 +44,7 @@ namespace Soup {
 				size_t allocSize = (sizeof(T) * len) + 1; //Add a byte for the null terminator
 				T* boxPtr = (T*)malloc(allocSize);
 				if (!boxPtr) {
-					throw std::exception("Failed to allocate ptr for string buffer");
+					throw std::runtime_error("Failed to allocate ptr for string buffer");
 				}
 				memcpy(boxPtr, ptr, len);
 				this->box.ptr = boxPtr;

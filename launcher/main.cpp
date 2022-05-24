@@ -1,6 +1,6 @@
 #include "launcher.h"
 #include <logger.h>
-#include <Windows.h>
+#include <windows.h>
 #include <filesystem>
 
 int main() {

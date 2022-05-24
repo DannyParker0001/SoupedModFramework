@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <Windows.h>
+#include <windows.h>
 
 #define LAUNCH_STATUS_PIPE "\\\\.\\pipe\\smf\\launchstatus"
 

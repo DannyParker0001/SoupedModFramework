@@ -1,6 +1,6 @@
 #pragma once
-#include <Windows.h>
-#include <Psapi.h>
+#include <windows.h>
+#include <psapi.h>
 #include <vector>
 #include <string>
 

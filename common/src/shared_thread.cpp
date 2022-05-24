@@ -1,5 +1,5 @@
 #include <shared_thread.h>
-#include <Windows.h>
+#include <windows.h>
 #include <logger.h>
 
 shared_thread::shared_thread(int timeoutMillis)

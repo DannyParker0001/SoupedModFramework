@@ -5,14 +5,14 @@ const char* IPC::SpawnAndWaitForPipe(std::string pipeName) {
 	HANDLE hPipe = CreateNamedPipeA(pipeName.c_str(), PIPE_ACCESS_DUPLEX, PIPE_TYPE_BYTE | PIPE_WAIT, 1, MAX_PATH, MAX_PATH, NMPWAIT_USE_DEFAULT_WAIT, NULL);
 	char* readBuffer = (char*)_malloca(MAX_PATH + 1);
 	if (!readBuffer) {
-		throw std::exception("Failed to allocate buffer");
+		throw std::runtime_error("Failed to allocate buffer");
 	}
 	while (true) {
 		if (ConnectNamedPipe(hPipe, NULL) != false) {
 			bool readPipe = ReadFile(hPipe, readBuffer, MAX_PATH, NULL, NULL);
 			if (!readPipe) {
 				if (GetLastError() == ERROR_BROKEN_PIPE) {
-					throw std::exception("Pipe client disconnected");
+					throw std::runtime_error("Pipe client disconnected");
 				}
 				else if (GetLastError() == ERROR_PIPE_LISTENING) {
 					Sleep(100);
@@ -20,7 +20,7 @@ const char* IPC::SpawnAndWaitForPipe(std::string pipeName) {
 				}
 				else {
 					std::string errMsg = "Couldn't read pipe: GLE: " + std::to_string(GetLastError());
-					throw std::exception(errMsg.c_str());
+					throw std::runtime_error(errMsg.c_str());
 				}
 			}
 			else {
@@ -44,7 +44,7 @@ const char* IPC::ReadBytes(HANDLE hPipe) {
 	if (ReadFile(hPipe, msgBuf, MAX_PATH, NULL, NULL)) {
 		return msgBuf;
 	}
-	throw std::exception("Cannot read pipe");
+	throw std::runtime_error("Cannot read pipe");
 }
 std::string IPC::ReadMessage(HANDLE hPipe) {
 	return ReadBytes(hPipe);

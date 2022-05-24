@@ -3,14 +3,14 @@
 void Registry::ReadValue(HKEY base_key, std::string path, std::string key, char* value_buffer, bool is_text = false) {
 
     if (value_buffer == nullptr) {
-        throw std::exception("value_buffer must be a char[MAX_PATH]!");
+        throw std::runtime_error("value_buffer must be a char[MAX_PATH]!");
         return;
     }
 
     HKEY hKey;
     LSTATUS status = RegOpenKeyExA(base_key, path.c_str(), 0, KEY_READ, &hKey);
     if (status != ERROR_SUCCESS) {
-        throw std::exception("Failed to open registry key!");
+        throw std::runtime_error("Failed to open registry key!");
         return;
     }
 
@@ -18,7 +18,7 @@ void Registry::ReadValue(HKEY base_key, std::string path, std::string key, char*
     DWORD dwType = 0;
     status = RegQueryValueExA(hKey, key.c_str(), nullptr, &dwType, (BYTE*)value_buffer, &dwLen);
     if (status != ERROR_SUCCESS) {
-        throw std::exception("Failed to read registry key!");
+        throw std::runtime_error("Failed to read registry key!");
         return;
     }
     if (is_text && dwLen <= MAX_PATH) {
@@ -43,7 +43,7 @@ int Registry::ReadDWORD(HKEY base_key, std::string path, std::string key) {
 void Registry::WriteValue(HKEY base_key, std::string path, std::string key, char* value_buffer, bool is_text)
 {
     if (value_buffer == nullptr) {
-        throw std::exception("value_buffer must be a char[MAX_PATH]!");
+        throw std::runtime_error("value_buffer must be a char[MAX_PATH]!");
         return;
     }
 
@@ -52,7 +52,7 @@ void Registry::WriteValue(HKEY base_key, std::string path, std::string key, char
     if (status != ERROR_SUCCESS) {
         status = RegCreateKeyA(base_key, path.c_str(), &hKey);
         if (status != ERROR_SUCCESS) {
-            throw std::exception("Failed to create a registry key");
+            throw std::runtime_error("Failed to create a registry key");
             return;
         }
     }
@@ -61,7 +61,7 @@ void Registry::WriteValue(HKEY base_key, std::string path, std::string key, char
     DWORD dwType = is_text ? REG_SZ : REG_DWORD;
     status = RegSetValueExA(hKey, key == "(Default)" ? NULL : key.c_str(), 0, dwType, (BYTE*)value_buffer, dwLen);
     if (status != ERROR_SUCCESS) {
-        throw std::exception("Failed to write registry key!");
+        throw std::runtime_error("Failed to write registry key!");
         return;
     }
 

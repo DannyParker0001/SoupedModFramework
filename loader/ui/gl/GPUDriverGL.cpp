@@ -22,8 +22,8 @@
 #define INFO(x)
 #endif
 
-#if _WIN32
-#include <Windows.h>
+#if _WIN32 && !defined( __GNUC__ )
+#include <windows.h>
 #include <logger.h>
 #define FATAL(x) { std::stringstream str; \
   str << "[ERROR] " << __FUNCSIG__ << " @ Line " << __LINE__ << ":\n\t" << x << std::endl; \
